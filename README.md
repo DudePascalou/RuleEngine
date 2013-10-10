@@ -14,7 +14,10 @@ Comparers supported are :
  - GreaterOrEqual
  - LesserOrEqual
 
-
 Associations supported are :
  - And
  - Or
+
+The input is a list of condition entities.
+The list is parsed into a condition tree.
+The output is a boolean.
