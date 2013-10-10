@@ -45,6 +45,7 @@
     <Compile Include="ConditionNode.cs" />
     <Compile Include="ConditionTree.cs" />
     <Compile Include="ICondition.cs" />
+    <Compile Include="InconclusiveConditionException.cs" />
     <Compile Include="Operator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

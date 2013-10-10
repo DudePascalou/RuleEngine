@@ -63,9 +63,9 @@ namespace RuleEngine.Tests
             {
                 Association = null,
                 NombreParenthesesOuvrantes = 1,
-                OperandeGauche = null,
+                OperandeGaucheSaisieLibre = null,
                 Operateur = Operator.Equal,
-                OperandeDroit = null,
+                OperandeDroitSaisieLibre = null,
                 NombreParenthesesFermantes = 0
             });
 
@@ -86,9 +86,9 @@ namespace RuleEngine.Tests
             {
                 Association = null,
                 NombreParenthesesOuvrantes = 0,
-                OperandeGauche = null,
+                OperandeGaucheSaisieLibre = null,
                 Operateur = Operator.Equal,
-                OperandeDroit = null,
+                OperandeDroitSaisieLibre = null,
                 NombreParenthesesFermantes = 1
             });
 
@@ -109,18 +109,18 @@ namespace RuleEngine.Tests
             {
                 Association = null,
                 NombreParenthesesOuvrantes = 0,
-                OperandeGauche = null,
+                OperandeGaucheSaisieLibre = null,
                 Operateur = Operator.Equal,
-                OperandeDroit = null,
+                OperandeDroitSaisieLibre = null,
                 NombreParenthesesFermantes = 1
             });
             conditionList.Add(new ConditionEntity()
             {
                 Association = null,
                 NombreParenthesesOuvrantes = 1,
-                OperandeGauche = null,
+                OperandeGaucheSaisieLibre = null,
                 Operateur = Operator.Equal,
-                OperandeDroit = null,
+                OperandeDroitSaisieLibre = null,
                 NombreParenthesesFermantes = 0
             });
 
@@ -141,9 +141,9 @@ namespace RuleEngine.Tests
             {
                 Association = Association.And,
                 NombreParenthesesOuvrantes = 0,
-                OperandeGauche = null,
+                OperandeGaucheSaisieLibre = null,
                 Operateur = Operator.Equal,
-                OperandeDroit = null,
+                OperandeDroitSaisieLibre = null,
                 NombreParenthesesFermantes = 0
             });
 
@@ -182,9 +182,9 @@ namespace RuleEngine.Tests
             {
                 Association = null,
                 NombreParenthesesOuvrantes = 0,
-                OperandeGauche = "A",
+                OperandeGaucheSaisieLibre = "A",
                 Operateur = Operator.Equal,
-                OperandeDroit = "A",
+                OperandeDroitSaisieLibre = "A",
                 NombreParenthesesFermantes = 0
             };
             conditions.Add(cA);
@@ -265,9 +265,9 @@ namespace RuleEngine.Tests
             {
                 Association = null,
                 NombreParenthesesOuvrantes = 0,
-                OperandeGauche = "A",
+                OperandeGaucheSaisieLibre = "A",
                 Operateur = Operator.Equal,
-                OperandeDroit = aIsTrue ? "A" : "#",
+                OperandeDroitSaisieLibre = aIsTrue ? "A" : "#",
                 NombreParenthesesFermantes = 0
             };
             conditions.Add(cA);
@@ -276,9 +276,9 @@ namespace RuleEngine.Tests
             {
                 Association = aAndBAssociation,
                 NombreParenthesesOuvrantes = 0,
-                OperandeGauche = "B",
+                OperandeGaucheSaisieLibre = "B",
                 Operateur = Operator.Equal,
-                OperandeDroit = bIsTrue ? "B" : "#",
+                OperandeDroitSaisieLibre = bIsTrue ? "B" : "#",
                 NombreParenthesesFermantes = 0
             };
             conditions.Add(cB);
@@ -287,9 +287,9 @@ namespace RuleEngine.Tests
             {
                 Association = bAndCAssociation,
                 NombreParenthesesOuvrantes = 0,
-                OperandeGauche = "C",
+                OperandeGaucheSaisieLibre = "C",
                 Operateur = Operator.Equal,
-                OperandeDroit = cIsTrue ? "C" : "#",
+                OperandeDroitSaisieLibre = cIsTrue ? "C" : "#",
                 NombreParenthesesFermantes = 0
             };
             conditions.Add(cC);
@@ -343,9 +343,9 @@ namespace RuleEngine.Tests
             {
                 Association = null,
                 NombreParenthesesOuvrantes = aOpeningBrackets.Length,
-                OperandeGauche = "A",
+                OperandeGaucheSaisieLibre = "A",
                 Operateur = Operator.Equal,
-                OperandeDroit = aConditionResult ? "A" : "#",
+                OperandeDroitSaisieLibre = aConditionResult ? "A" : "#",
                 NombreParenthesesFermantes = 0
             };
             conditions.Add(cA);
@@ -354,9 +354,9 @@ namespace RuleEngine.Tests
             {
                 Association = aAndBAssociation,
                 NombreParenthesesOuvrantes = bOpeningBrackets.Length,
-                OperandeGauche = "B",
+                OperandeGaucheSaisieLibre = "B",
                 Operateur = Operator.Equal,
-                OperandeDroit = bConditionResult ? "B" : "#",
+                OperandeDroitSaisieLibre = bConditionResult ? "B" : "#",
                 NombreParenthesesFermantes = bClosingBrackets.Length
             };
             conditions.Add(cB);
@@ -365,9 +365,9 @@ namespace RuleEngine.Tests
             {
                 Association = bAndCAssociation,
                 NombreParenthesesOuvrantes = 0,
-                OperandeGauche = "C",
+                OperandeGaucheSaisieLibre = "C",
                 Operateur = Operator.Equal,
-                OperandeDroit = cConditionResult ? "C" : "#",
+                OperandeDroitSaisieLibre = cConditionResult ? "C" : "#",
                 NombreParenthesesFermantes = cClosingBrackets.Length
             };
             conditions.Add(cC);
@@ -492,9 +492,9 @@ namespace RuleEngine.Tests
             {
                 Association = null,
                 NombreParenthesesOuvrantes = aOpeningBrackets.Length,
-                OperandeGauche = "A",
+                OperandeGaucheSaisieLibre = "A",
                 Operateur = Operator.Equal,
-                OperandeDroit = aConditionResult ? "A" : "#",
+                OperandeDroitSaisieLibre = aConditionResult ? "A" : "#",
                 NombreParenthesesFermantes = 0
             };
             conditions.Add(cA);
@@ -503,9 +503,9 @@ namespace RuleEngine.Tests
             {
                 Association = aAndBAssociation,
                 NombreParenthesesOuvrantes = bOpeningBrackets.Length,
-                OperandeGauche = "B",
+                OperandeGaucheSaisieLibre = "B",
                 Operateur = Operator.Equal,
-                OperandeDroit = bConditionResult ? "B" : "#",
+                OperandeDroitSaisieLibre = bConditionResult ? "B" : "#",
                 NombreParenthesesFermantes = bClosingBrackets.Length
             };
             conditions.Add(cB);
@@ -514,9 +514,9 @@ namespace RuleEngine.Tests
             {
                 Association = bAndCAssociation,
                 NombreParenthesesOuvrantes = cOpeningBrackets.Length,
-                OperandeGauche = "C",
+                OperandeGaucheSaisieLibre = "C",
                 Operateur = Operator.Equal,
-                OperandeDroit = cConditionResult ? "C" : "#",
+                OperandeDroitSaisieLibre = cConditionResult ? "C" : "#",
                 NombreParenthesesFermantes = cClosingBrackets.Length
             };
             conditions.Add(cC);
@@ -525,9 +525,9 @@ namespace RuleEngine.Tests
             {
                 Association = cAndDAssociation,
                 NombreParenthesesOuvrantes = dOpeningBrackets.Length,
-                OperandeGauche = "D",
+                OperandeGaucheSaisieLibre = "D",
                 Operateur = Operator.Equal,
-                OperandeDroit = dConditionResult ? "D" : "#",
+                OperandeDroitSaisieLibre = dConditionResult ? "D" : "#",
                 NombreParenthesesFermantes = dClosingBrackets.Length
             };
             conditions.Add(cD);

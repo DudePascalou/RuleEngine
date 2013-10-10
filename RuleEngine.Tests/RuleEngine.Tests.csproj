@@ -49,8 +49,11 @@
     <Compile Include="ConditionEntityTests.cs" />
     <Compile Include="ConditionNodeTests.cs" />
     <Compile Include="ConditionTreeTests.cs" />
+    <Compile Include="FormatSaisie.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ConditionTests.cs" />
+    <Compile Include="Question.cs" />
+    <Compile Include="TypeSource.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\RuleEngine\RuleEngine.csproj">

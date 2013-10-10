@@ -10,9 +10,13 @@ namespace RuleEngine.Tests
     {
         public Association? Association { get; set; }
         public int NombreParenthesesOuvrantes { get; set; }
-        public string OperandeGauche { get; set; }
+        public string OperandeGaucheSaisieLibre { get; set; }
+        public TypeSource OperandeGaucheTypeSource { get; set; }
+        public Question OperandeGaucheQuestion { get; set; }
         public Operator Operateur { get; set; }
-        public string OperandeDroit { get; set; }
+        public string OperandeDroitSaisieLibre { get; set; }
+        public TypeSource OperandeDroitTypeSource { get; set; }
+        public Question OperandeDroitQuestion { get; set; }
         public int NombreParenthesesFermantes { get; set; }
 
 
@@ -23,12 +27,117 @@ namespace RuleEngine.Tests
                 "{0} {1} {2} {3} {4} {5}",
                 this.Association.HasValue ? this.Association.Value.ToString() : string.Empty,
                 new string('(', this.NombreParenthesesOuvrantes),
-                this.OperandeGauche,
+                this.OperandeGaucheSaisieLibre,
                 this.Operateur,
-                this.OperandeDroit,
+                this.OperandeDroitSaisieLibre,
                 new string(')', this.NombreParenthesesFermantes)
             ).Trim();
         }
+
+
+        public bool OperandsAreCompatible()
+        {
+            // TODO : vérifier la compatibilité des opérandes gauche et droite
+            return true;
+        }
+
+
+        private ICondition BuildCondition()
+        {
+            ICondition condition;
+            var operandsType = this.GetOperandsType();
+
+            if (operandsType.Equals(typeof(int)))
+                condition = new Condition<int>(this.GetOperandeGaucheAsInt(), this.Operateur, this.GetOperandeDroitAsInt());
+            else if (operandsType.Equals(typeof(DateTime)))
+                condition = new Condition<DateTime>(this.GetOperandeGaucheAsDateTime(), this.Operateur, this.GetOperandeDroitAsDateTime());
+            else
+                condition = new Condition<string>(this.GetOperandeGaucheAsString(), this.Operateur, this.GetOperandeDroitAsString());
+
+            return condition;
+        }
+
+        private DateTime GetOperandeDroitAsDateTime()
+        {
+            throw new NotImplementedException();
+        }
+
+        private DateTime GetOperandeGaucheAsDateTime()
+        {
+            throw new NotImplementedException();
+        }
+
+        private int GetOperandeDroitAsInt()
+        {
+            throw new NotImplementedException();
+        }
+
+        private int GetOperandeGaucheAsInt()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Type GetOperandsType()
+        {
+            if (!this.OperandsAreCompatible())
+                throw new InvalidOperationException();
+
+            if (this.OperandeGaucheTypeSource == TypeSource.Question && this.OperandeGaucheQuestion.FormatSaisie == FormatSaisie.Entier)
+                return typeof(int);
+            if (this.OperandeGaucheTypeSource == TypeSource.Question && this.OperandeGaucheQuestion.FormatSaisie == FormatSaisie.Date)
+                return typeof(DateTime);
+            if (this.OperandeDroitTypeSource == TypeSource.Question && this.OperandeDroitQuestion.FormatSaisie == FormatSaisie.Entier)
+                return typeof(int);
+            if (this.OperandeDroitTypeSource == TypeSource.Question && this.OperandeDroitQuestion.FormatSaisie == FormatSaisie.Date)
+                return typeof(DateTime);
+
+            return typeof(string);
+        }
+
+        private string GetOperandeGaucheAsString()
+        {
+            // TODO
+            switch (this.OperandeGaucheTypeSource)
+            {
+                case TypeSource.SaisieLibre:
+                    break;
+                case TypeSource.Enumeration:
+                    break;
+                case TypeSource.BaseDeDonnees:
+                    break;
+                case TypeSource.Question:
+                    break;
+                case TypeSource.Regle:
+                    throw new InvalidOperationException("Une règle ne peut pas être utilisée pour une condition.");
+                default:
+                    throw new NotSupportedException();
+            }
+
+            return string.Empty;
+        }
+
+        private string GetOperandeDroitAsString()
+        {
+            // TODO
+            switch (this.OperandeDroitTypeSource)
+            {
+                case TypeSource.SaisieLibre:
+                    break;
+                case TypeSource.Enumeration:
+                    break;
+                case TypeSource.BaseDeDonnees:
+                    break;
+                case TypeSource.Question:
+                    break;
+                case TypeSource.Regle:
+                    throw new InvalidOperationException("Une règle ne peut pas être utilisée pour une condition.");
+                default:
+                    throw new NotSupportedException();
+            }
+
+            return string.Empty;
+        }
+
 
 
         public static ConditionTree Parse(IEnumerable<ConditionEntity> conditionEntities)
@@ -68,21 +177,21 @@ namespace RuleEngine.Tests
 
             if (currentNode.LeftCondition == null)
             {
-                currentNode.LeftCondition = new Condition<string>(currentConditionEntity.OperandeGauche, currentConditionEntity.Operateur, currentConditionEntity.OperandeDroit); // TODO : interpréter les opérandees provenant de la base...
+                currentNode.LeftCondition = currentConditionEntity.BuildCondition();
             }
             else if (currentNode.RightCondition != null)
             {
                 currentNode.RightCondition = new ConditionNode()
                 {
                     LeftCondition = currentNode.RightCondition,
-                    RightCondition = new Condition<string>(currentConditionEntity.OperandeGauche, currentConditionEntity.Operateur, currentConditionEntity.OperandeDroit) // TODO : interpréter les opérandees provenant de la base...
+                    RightCondition = currentConditionEntity.BuildCondition()
                 };
                 currentNode = currentNode.RightCondition as ConditionNode;
                 if (currentConditionEntity.Association.HasValue) currentNode.Association = currentConditionEntity.Association;
             }
             else
             {
-                currentNode.RightCondition = new Condition<string>(currentConditionEntity.OperandeGauche, currentConditionEntity.Operateur, currentConditionEntity.OperandeDroit); // TODO : interpréter les opérandees provenant de la base...
+                currentNode.RightCondition = currentConditionEntity.BuildCondition();
                 if (currentConditionEntity.Association.HasValue) currentNode.Association = currentConditionEntity.Association;
             }
 
@@ -151,5 +260,6 @@ namespace RuleEngine.Tests
             // car l'opérateur ET est prioritaire par rapport au OU, mais l'arbre des conditions qui sera produit
             // va donner la priorité au OU : (A ET (B OU C)).
         }
+
     }
 }
