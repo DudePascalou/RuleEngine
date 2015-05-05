@@ -1,5 +1,7 @@
 language: csharp
 solution: RuleEngine.sln
-
+script:
+  - xbuild /p:Configuration=Release RuleEngine.sln
+  - mono ./packages/xunit.runners.*/tools/xunit.console.clr4.exe ./RuleEngine.Tests/bin/Release/RuleEngine.Tests.dll
 after_success:
   - bash <(curl -s https://codecov.io/bash)
