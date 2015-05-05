@@ -1,2 +1,5 @@
 language: csharp
 solution: RuleEngine.sln
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
