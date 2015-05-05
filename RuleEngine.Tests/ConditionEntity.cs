@@ -100,7 +100,7 @@ namespace RuleEngine.Tests
             switch (this.OperandeGaucheTypeSource)
             {
                 case TypeSource.SaisieLibre:
-                    break;
+                    return this.OperandeGaucheSaisieLibre;
                 case TypeSource.Enumeration:
                     break;
                 case TypeSource.BaseDeDonnees:
@@ -122,7 +122,7 @@ namespace RuleEngine.Tests
             switch (this.OperandeDroitTypeSource)
             {
                 case TypeSource.SaisieLibre:
-                    break;
+                    return this.OperandeDroitSaisieLibre;
                 case TypeSource.Enumeration:
                     break;
                 case TypeSource.BaseDeDonnees:

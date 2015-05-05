@@ -90,12 +90,19 @@ namespace RuleEngine
         {
             if (!this.Association.HasValue)
             {
-                return string.Format
-                (
-                    "({0} - {1})",
-                    this.LeftCondition,
-                    this.RightCondition
-                );
+                if (this.RightCondition == null)
+                    return string.Format
+                    (
+                        "({0})",
+                        this.LeftCondition
+                    );
+                else
+                    return string.Format
+                    (
+                        "({0} - {1})",
+                        this.LeftCondition,
+                        this.RightCondition
+                    );
             }
             else
             {

@@ -242,20 +242,20 @@ namespace RuleEngine.Tests
             Assert.AreEqual("(A Equal # Or (B Equal # Or C Equal C))", tree.Root.ToString());
         }
 
-        [Test]
-        [ExpectedException(typeof(InvalidOperationException))]
-        [Ignore()] // En attente de l'implémentation de la vérification...
-        public void ParseThreeConditionEntitiesWithoutPrioritiesButWithDifferentAssociationsTest()
-        {
-            // Arrange :
-            var conditions = this.GetThreeConditionEntitiesWithoutPriorities(true, Association.And, true, Association.Or, true);
+        //[Test]
+        //[ExpectedException(typeof(InvalidOperationException))]
+        ////TODO : Implémenter la vérification...
+        //public void ParseThreeConditionEntitiesWithoutPrioritiesButWithDifferentAssociationsTest()
+        //{
+        //    // Arrange :
+        //    var conditions = this.GetThreeConditionEntitiesWithoutPriorities(true, Association.And, true, Association.Or, true);
 
-            // Act :
-            var tree = ConditionEntity.Parse(conditions);
+        //    // Act :
+        //    var tree = ConditionEntity.Parse(conditions);
 
-            // Assert :
-            Assert.Fail("Ce test doit lever une exception");
-        }
+        //    // Assert :
+        //    Assert.Fail("Ce test doit lever une exception");
+        //}
 
         private IEnumerable<ConditionEntity> GetThreeConditionEntitiesWithoutPriorities(bool aIsTrue, Association aAndBAssociation, bool bIsTrue, Association bAndCAssociation, bool cIsTrue)
         {
