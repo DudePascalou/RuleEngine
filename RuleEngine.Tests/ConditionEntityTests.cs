@@ -2,16 +2,16 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace RuleEngine.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class ConditionEntityTests
     {
         #region Exceptions
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ParseNullConditionListTest()
         {
@@ -25,7 +25,7 @@ namespace RuleEngine.Tests
             Assert.Fail("Ce test doit lever une exception.");
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(ArgumentNullException))]
         public void ParseEmptyConditionListTest()
         {
@@ -39,7 +39,7 @@ namespace RuleEngine.Tests
             Assert.Fail("Ce test doit lever une exception.");
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void ParseConditionListWithNullConditionTest()
         {
@@ -53,7 +53,7 @@ namespace RuleEngine.Tests
             Assert.Fail("Ce test doit lever une exception.");
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void ParseWithTooManyOpeningBracketsTest()
         {
@@ -76,7 +76,7 @@ namespace RuleEngine.Tests
             Assert.Fail("Ce test doit lever une exception.");
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void ParseWithTooManyClosingBracketsTest()
         {
@@ -99,7 +99,7 @@ namespace RuleEngine.Tests
             Assert.Fail("Ce test doit lever une exception.");
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void ParseWithUnmatchedBracketsTest()
         {
@@ -131,7 +131,7 @@ namespace RuleEngine.Tests
             Assert.Fail("Ce test doit lever une exception.");
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void ParseWithFirstElementWithAssociationTest()
         {
@@ -160,7 +160,7 @@ namespace RuleEngine.Tests
 
         #region 1 condition
 
-        [TestMethod]
+        [Test]
         public void ParseSimpleConditionTest()
         {
             // Arrange :
@@ -198,7 +198,7 @@ namespace RuleEngine.Tests
 
         #region 3 conditions sans priorité
 
-        [TestMethod]
+        [Test]
         public void ParseThreeConditionEntitiesWithoutPrioritiesTest()
         {
             // Arrange :
@@ -242,7 +242,7 @@ namespace RuleEngine.Tests
             Assert.AreEqual("(A Equal # Or (B Equal # Or C Equal C))", tree.Root.ToString());
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         [Ignore()] // En attente de l'implémentation de la vérification...
         public void ParseThreeConditionEntitiesWithoutPrioritiesButWithDifferentAssociationsTest()
@@ -303,7 +303,7 @@ namespace RuleEngine.Tests
 
         #region 3 conditions avec priorités
 
-        [TestMethod]
+        [Test]
         public void ParseThreeConditionEntitiesWithPrioritiesTest()
         {
             this.ParseActAssertHelper
@@ -381,7 +381,7 @@ namespace RuleEngine.Tests
 
         #region 4 conditions sans priorité
 
-        [TestMethod]
+        [Test]
         public void ParseFourConditionEntitiesWithoutPrioritiesTest()
         {
             this.ParseActAssertHelper
@@ -424,7 +424,7 @@ namespace RuleEngine.Tests
 
         #region 4 conditions avec priorités
 
-        [TestMethod]
+        [Test]
         public void ParseFourConditionEntitiesWithPrioritiesTest()
         {
             this.ParseActAssertHelper

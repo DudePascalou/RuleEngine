@@ -2,14 +2,14 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace RuleEngine.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class ConditionTests
     {
-        [TestMethod]
+        [Test]
         public void IsTrueWithEqualMethod()
         {
             // Arrange :
@@ -19,7 +19,7 @@ namespace RuleEngine.Tests
             Assert.IsTrue(c1.IsTrue());
         }
 
-        [TestMethod]
+        [Test]
         public void IsTrueWithNotEqualMethod()
         {
             // Arrange :
@@ -29,7 +29,7 @@ namespace RuleEngine.Tests
             Assert.IsTrue(c1.IsTrue());
         }
 
-        [TestMethod]
+        [Test]
         public void IsTrueWithGreaterMethod()
         {
             // Arrange :
@@ -39,7 +39,7 @@ namespace RuleEngine.Tests
             Assert.IsTrue(c1.IsTrue());
         }
 
-        [TestMethod]
+        [Test]
         public void IsTrueWithLessMethod()
         {
             // Arrange :
@@ -49,7 +49,7 @@ namespace RuleEngine.Tests
             Assert.IsTrue(c1.IsTrue());
         }
 
-        [TestMethod]
+        [Test]
         public void IsTrueWithGreaterOrEqualMethod()
         {
             // Arrange :
@@ -65,7 +65,7 @@ namespace RuleEngine.Tests
             Assert.IsTrue(c2.IsTrue());
         }
 
-        [TestMethod]
+        [Test]
         public void IsTrueWithLessOrEqualMethod()
         {
             // Arrange :

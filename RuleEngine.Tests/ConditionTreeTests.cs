@@ -2,14 +2,14 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace RuleEngine.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class ConditionTreeTests
     {
-        [TestMethod]
+        [Test]
         public void IsTrueTest()
         {
             // Exemple simple :

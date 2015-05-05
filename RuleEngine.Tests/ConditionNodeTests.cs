@@ -2,16 +2,16 @@
 using System.Text;
 using System.Collections.Generic;
 using System.Linq;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
+using NUnit.Framework;
 
 namespace RuleEngine.Tests
 {
-    [TestClass]
+    [TestFixture]
     public class ConditionNodeTests
     {
         #region ParentNode
 
-        [TestMethod]
+        [Test]
         public void ParentNodeFromLeftConditionTest()
         {
             // Arrange :
@@ -27,7 +27,7 @@ namespace RuleEngine.Tests
             Assert.AreEqual(parentNode, leftNode.ParentNode);
         }
 
-        [TestMethod]
+        [Test]
         public void ParentNodeFromRightConditionTest()
         {
             // Arrange :
@@ -49,7 +49,7 @@ namespace RuleEngine.Tests
 
         #region IsTrue
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void IsTrueWithNoAssociationTest()
         {
@@ -68,7 +68,7 @@ namespace RuleEngine.Tests
             Assert.Fail("Ce test doit lever une exception.");
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void IsTrueWithNoConditionNorAssociationTest()
         {
@@ -87,7 +87,7 @@ namespace RuleEngine.Tests
             Assert.Fail("Ce test doit lever une exception.");
         }
 
-        [TestMethod]
+        [Test]
         [ExpectedException(typeof(InvalidOperationException))]
         public void IsTrueWithNoConditionTest()
         {
