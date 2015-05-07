@@ -3,5 +3,6 @@ solution: RuleEngine.sln
 script:
   - xbuild /p:Configuration=Release RuleEngine.sln
   - mono ./packages/NUnit.Runners.2.6.4/tools/nunit-console.exe ./RuleEngine.Tests/bin/Release/RuleEngine.Tests.dll
+  - mono ./packages/OpenCover.4.5.3723/OpenCover.Console.exe -register:user -target:"./packages/NUnit.Runners.2.6.4/tools/nunit-console.exe" -targetargs:"./RuleEngine.Tests/bin/Release/RuleEngine.Tests.dll /noshadow" -filter:"+[RuleEngine]* -[RuleEngine]RuleEngine.Properties.*" -excludebyattribute:*.ExcludeFromCodeCoverage* -hideskipped:All -output:./TestResultCoverage.xml
 after_success:
   - bash <(curl -s https://codecov.io/bash)
